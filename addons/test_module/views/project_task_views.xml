@@ -1,0 +1,12 @@
+<odoo>
+    <record id="view_task_form_inherit_test_module" model="ir.ui.view">
+        <field name="name">project.task.test.module</field>
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="project.view_task_form2"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='tag_ids']" position="after">
+                <field name="x_custom_note"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
