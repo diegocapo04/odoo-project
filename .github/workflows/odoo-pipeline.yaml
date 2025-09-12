@@ -1,0 +1,38 @@
+name: Odoo Integration Pipeline
+
+on: 
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - '**.md'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Docker Compose
+        run: docker compose -f compose.yaml up -d
+
+      - name: Wait for Odoo
+        run: sleep 30
+
+      - name: Install Custom Module
+        run: |
+          docker exec web odoo \
+            -d testdb \
+            -i test_module \
+            --stop-after-init \
+            --db_host=db \
+            --db_user=odoo \
+            --db_password=odoo
+
+      - name: Stop Docker Compose
+        if: always()
+        run: docker compose -f compose.yaml down
+ 
+
