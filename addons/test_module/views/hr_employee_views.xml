@@ -1,0 +1,13 @@
+<odoo>
+    <record id="view_employee_form_inherit_test_module" model="ir.ui.view">
+        <field name="name">hr.employee.test.module</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='work_email']" position="after">
+                <field name="x_custom_note"/>
+                <field name="task_ids" widget="many2many_tags"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
