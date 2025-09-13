@@ -13,7 +13,7 @@ services:
       - "5432:5432"
   
   web:
-    image: odoo:17.0
+    image: odoo-custom
     container_name: web
     depends_on:
       - db
