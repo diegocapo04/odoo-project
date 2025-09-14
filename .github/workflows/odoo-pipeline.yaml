@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - dev
     paths-ignore:
       - '**.md'
 
@@ -15,8 +16,11 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
+      - name: Build the Image
+        run: docker build -t odoo-custom .
+
       - name: Setup Docker Compose
-        run: docker compose -f compose.yaml up -d
+        run: docker compose up -d
 
       - name: Wait for Odoo
         run: sleep 30
@@ -31,8 +35,17 @@ jobs:
             --db_user=odoo \
             --db_password=odoo
 
+      - name: Run Odoo Tests
+        run: |
+            docker exec web odoo \
+            -d testdb \
+            -i test_module \
+            --test-enable \
+            --stop-after-init \
+            --db_host=db \
+            --db_user=odoo \
+            --db_password=odoo
+
       - name: Stop Docker Compose
         if: always()
-        run: docker compose -f compose.yaml down
- 
-
+        run: docker compose down
