@@ -35,6 +35,17 @@ jobs:
             --db_user=odoo \
             --db_password=odoo
 
+      - name: Run Odoo Tests
+        run: |
+            docker exec web odoo \
+            -d testdb \
+            -i test_module \
+            --test-enable \
+            --stop-after-init \
+            --db_host=db \
+            --db_user=odoo \
+            --db_password=odoo
+
       - name: Stop Docker Compose
         if: always()
         run: docker compose down
