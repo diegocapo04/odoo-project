@@ -1,6 +1,6 @@
 from odoo.tests.common import TransactionCase
 
-class TestMultipleTask(TransitionCase):
+class TestMultipleTask(TransactionCase):
     def test_multiple_employee_task(self):
         employee = self.env['hr.employee'].create({'name':'Oggetto ProvaY'})
         tasks = self.env['project.task'].create({
