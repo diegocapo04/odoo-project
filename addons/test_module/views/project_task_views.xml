@@ -5,8 +5,8 @@
         <field name="inherit_id" ref="project.view_task_form2"/>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='tag_ids']" position="after">
-                <field name="x_custom_note"/>
-                <field name="employee_id"/>
+                <field name="project_note"/>
+                <field name="employee_ids" widget="many2many_tags"/>
             </xpath>
         </field>
     </record>
