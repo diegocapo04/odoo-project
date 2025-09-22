@@ -5,7 +5,7 @@ class TestModelsRelation(TransactionCase):
         employee = self.env['hr.employee'].create({'name':'Utente ProvaX'})
         task = self.env['project.task'].create({
             'name':'Task Assegnato',
-            'employee_id':employee.id
+            'employee_ids':[(6,0,employee.id)]
         })
-        self.assertEqual(task.employee_id, employee)
+        self.assertIn(employee, task.employee_ids)
         self.assertIn(task, employee.task_ids)
