@@ -7,7 +7,10 @@ Ambiente di sviluppo **Odoo 17** con **PostgreSQL 15**, gestito tramite **Docker
 Il progetto utilizza la cartella `addons/` locale dove vengono salvati i moduli personalizzati.  
 
 In questa versione:
-- E' stato creato un modulo di test test_module che estende e integra i moduli predefiniti project e hr, aggiungendo campi personalizzati e relazioni tra task e dipendenti.
+- E' stato creato un modulo di test test_module che estende e integra i moduli predefiniti project e hr, aggiungendo:
+   - campi personalizzati 
+   - una relazione **many2many** tra `project.task` e `hr.employee`
+   - sincronizzazione automatica con il campo `user_ids` per mantenere la compatibilità con Odoo
 - E' stato configurato un workflow di CI/CD con GitHub Actions per testare automaticamente il modulo all’avvio dell’ambiente.
 - E' stato creato un Dockerfile per costruire l'immagine `odoo-custom` con i moduli integrati.
 
