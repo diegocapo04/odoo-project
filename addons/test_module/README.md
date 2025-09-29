@@ -8,12 +8,12 @@ Il modulo include anche una cartella `tests/` contenente casi di test automatici
 
 ## Funzionalità
 * Estende il modello `project.task`:
-    * Aggiunge il campo `x_custom_note`: campo testuale per note personalizzate.
-    * Nasconde il campo nativo `user_ids`, mantenendolo **sincronizzato automaticamnte** con gli utenti corrispondenti ai dipendenti assegnati.
+    * Aggiunge il campo `project_note`: campo testuale per note personalizzate.
+    * Nasconde il campo nativo `user_ids`, mantenendolo **sincronizzato automaticamente** con gli utenti corrispondenti ai dipendenti assegnati.
     * Aggiunge la relazione **many2many** `employee_ids`, che consente di assegnare uno o più dipendenti (`hr.employee`) ad un task/progetto.
     * Sincronizza automaticamente l’assegnazione e la rimozione dei task anche sugli utenti (`res.users`) collegati ai dipendenti.
 * Estende il modello `hr.employee`:
-    * Aggiunge il campo `x_custom_note`: campo testuale per note personalizzate.
+    * Aggiunge il campo `hr_note`: campo testuale per note personalizzate.
     * Modifica la vista form di hr.employee per mostrare il campo.
     * Mostra i task/progetti assegnati al dipendente (collegamento con Project)
 
